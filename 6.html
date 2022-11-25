@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Необязательное задание.
+
+Необходимо реализовать функцию, которая будет принимать первым аргументом
+целое положительное число, в следующих трех аргументах функция принимает слова
+в разных склонениях.
+Функция должна возвращать одно из трех переданных в параметры слов подходящее
+под число, которое передано первым аргументом.
+
+Пример:
+console.log(declinationOfNumber(1, "яблоко", "яблока", "яблок")); // "яблоко"
+console.log(declinationOfNumber(2, "мяч", "мяча", "мячей")); // "мяча"
+console.log(declinationOfNumber(5, "стул", "стула", "стульев")); // "стульев"
+
+Функция должна работать с любым словом и любым целым положительным числом.
+Все аргументы, которые будут передаваться функции будут верны.
+-->
+<script>
+  "use strict";
+
+  /** 
+    */
+  
+  /**
+    * Функция склонения слова.
+    * @param {number} count - Числительное.
+    * @param {string} one - Склонение слова за единицу.
+    * @param {string} two - Склонение слова за две единицы.
+    * @param {string} five - Склонение слова за пять единиц.
+    * @returns {string} Слово в необходимом склонении.
+    */
+  function getDeclination(count, one, two, five) {
+    count = (count % 100) % 10;
+    if (count >= 5 && count <= 20) {
+      return five;
+    } else if (count > 1 && count < 5) {
+      return two;
+    } else if (count === 1) {
+      return one;
+    }
+    return five;
+  }
+
+  let count = +prompt('Введите число');  
+  let word = getDeclination(count, "стул", "стула", "стульев");
+  console.log(`У меня есть ${count} ${word}.`);
+
+</script>
+</body>
+</html>
