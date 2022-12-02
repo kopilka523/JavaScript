@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Необязательное задание.
+
+Необходимо вывести горку в консоль (используя цикл for), как показано на
+рисунке, только у вашей горки должно быть 20 рядов, а не 5:
+
+```
+x
+xx
+xxx
+xxxx
+xxxxx
+```
+
+Примечание: в трех косых кавычках ``` показан пример кода для вывода, вам эти
+кавычки выводить не нужно.
+-->
+<script>
+  "use strict";
+  
+  let range = {
+    from: 1,
+    to: 20,
+    [Symbol.iterator]() {
+      this.current = this.from;
+      return this;
+    },
+    next() {
+      if (this.current <= this.to) {
+        return {done: false, value: this.current++};
+      } else {
+        return {done: true};
+      }
+    }
+  };
+
+  for (let num of range) {
+  console.log('x'.repeat(num));
+  }
+
+</script>
+</body>
+</html>
