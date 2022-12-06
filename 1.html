@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
+Необходимо создать функцию-конструктор/класс для продукта.
+Названия: `ProductES5` для es5 стиля, `ProductES6` для es6 стиля.
+При создании объекта от функции-конструктора/класса необходимо передавать имя
+и цену товара, эта информация должна быть сохранена в объекте.
+Также у объекта должна быть возможность выполнить метод `make25Discount`, данный
+метод должен уменьшать стоимость продукта на 25%.
+Необходимо продемонстрировать работу с объектом (в свободной форме).
+-->
+<script>
+  "use strict";
+
+  function ProductES5(name, price) {
+    this.name = name;
+    this.price = price;
+  }
+
+  ProductES5.prototype.make25Discount = function() {
+    return this.newPrice = this.price * 0.75;
+  };
+
+  const productOne = new ProductES5('Яблоко', 100);
+  const newProductOnePrice = productOne.make25Discount();
+  console.log(`${productOne.name}:
+    старая цена: ${productOne.price}, новая цена: ${newProductOnePrice}`);
+
+
+  class ProductES6 {
+    constructor(name, price) {
+      this.name = name;
+      this.price = price;
+    }
+
+    make25Discount() {
+      return this.newPrice = this.price * 0.75;
+    }
+  }
+
+  const productTwo = new ProductES6('Песок', 200);
+  const newProductTwoPrice = productTwo.make25Discount();
+  console.log(`${productTwo.name}:
+    старая цена: ${productTwo.price}, новая цена: ${newProductTwoPrice}`);
+
+
+  class ProductES6withGet {
+    constructor(name, price) {
+      this.name = name;
+      this.price = price;
+    }
+
+    get make25Discount() {
+      let date = new Date();
+      if (date.getDay() === 5) {
+        return this.price * 0.75;
+      } else {
+        return 'только в пятницу';
+      }
+    }
+  }
+
+  const productThree = new ProductES6withGet('Бумага', 300);
+  console.log(`${productThree.name}:
+  старая цена: ${productThree.price}, новая цена: ${productThree.make25Discount}`);
+
+
+  class ProductES6withSet {
+    newPrice = 0;
+
+    constructor(name, price) {
+      this.name = name;
+      this.price = price;
+    }
+
+    set make25Discount(newPrice) {
+      this.newPrice = newPrice;
+    }
+  }
+
+  const productFour = new ProductES6withSet('Кирпич', 500);
+  productFour.make25Discount = productFour.price * 0.75;
+  console.log(`${productFour.name}:
+  старая цена: ${productFour.price}, новая цена: ${productFour.newPrice}`);
+</script>
+</body>
+</html>
